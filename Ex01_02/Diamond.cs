@@ -42,7 +42,7 @@
 
             for (int i = 0; i < i_NumOfStars; i++)
             {
-                Console.Write("*");
+                Console.Write("*"); 
             }
 
             Console.WriteLine();
