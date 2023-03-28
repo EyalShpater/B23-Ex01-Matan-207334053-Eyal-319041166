@@ -6,6 +6,9 @@
     {
         public static void Draw(int i_DiamondHeight)
         {
+            const int k_NumOfStartingStars = 1;
+            int numOfStartingSpaces = i_DiamondHeight / 2;
+
             if (i_DiamondHeight < 0)
             {
                 Console.WriteLine("Invalid Diamond height!");
@@ -16,8 +19,8 @@
             {
                 i_DiamondHeight++;
             }
-
-            drawRecursiveHelper(i_DiamondHeight / 2, 1, i_DiamondHeight); // 1 needs to be const
+            
+            drawRecursiveHelper(numOfStartingSpaces, k_NumOfStartingStars, i_DiamondHeight);
         }
         private static void drawRecursiveHelper(int i_NumOfSpaces, int i_NumOfStars, int i_DiamondHeight)
         {
