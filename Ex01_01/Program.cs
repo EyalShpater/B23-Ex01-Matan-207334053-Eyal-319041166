@@ -5,6 +5,7 @@
         public static void Main()
         {
             System.Console.WriteLine("fhefje");
+            System.Console.WriteLine("this is my first C# appp");
         }
     }
 }
