@@ -1,6 +1,7 @@
 ﻿namespace Ex01_02
 {
     using System;
+    
     class Diamond
     {
         public static void Draw(int i_DiamondHeight)
@@ -11,12 +12,12 @@
                 return;
             }
 
-            if(i_DiamondHeight%2==0)
+            if(i_DiamondHeight % 2 == 0)
             {
                 i_DiamondHeight++;
             }
 
-            drawRecursiveHelper((i_DiamondHeight / 2), 1, i_DiamondHeight); // 1 needs to be const
+            drawRecursiveHelper(i_DiamondHeight / 2, 1, i_DiamondHeight); // 1 needs to be const
         }
         private static void drawRecursiveHelper(int i_NumOfSpaces, int i_NumOfStars, int i_DiamondHeight)
         {
@@ -27,7 +28,7 @@
             else
             {
                 printLine(i_NumOfSpaces, i_NumOfStars);
-                drawRecursiveHelper(i_NumOfSpaces-1, i_NumOfStars+2,i_DiamondHeight);
+                drawRecursiveHelper(i_NumOfSpaces - 1, i_NumOfStars + 2, i_DiamondHeight);
                 printLine(i_NumOfSpaces, i_NumOfStars);
             }
         }
