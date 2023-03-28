@@ -2,7 +2,7 @@
 {
     using System;
 
-    class Diamond
+    public class Diamond
     {
         public static void Draw(int i_DiamondHeight)
         {
