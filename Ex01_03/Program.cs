@@ -8,7 +8,7 @@ namespace Ex01_03
         {
             int numOfDiamondLines = GetNumOfDiamondLinesFromUser();
 
-            Ex01_02.Program.Draw(numOfDiamondLines);    
+            Ex01_02.Program.DrawDiamond(numOfDiamondLines);    
         }
 
         public static int GetNumOfDiamondLinesFromUser()
