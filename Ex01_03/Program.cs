@@ -6,9 +6,17 @@ namespace Ex01_03
     {
         public static void Main()
         {
-            int numOfDiamondLines = UserIO.GetNumOfDiamondLinesFromUser();
+            int numOfDiamondLines = GetNumOfDiamondLinesFromUser();
 
-            Ex01_02.Diamond.Draw(numOfDiamondLines);
+            Ex01_02.Program.Draw(numOfDiamondLines);    
+        }
+
+        public static int GetNumOfDiamondLinesFromUser()
+        {
+            Console.WriteLine("Enter number of Diamond lines: ");
+            int numOfDiamondLines = int.Parse(Console.ReadLine());
+
+            return numOfDiamondLines;
         }
     }
 }

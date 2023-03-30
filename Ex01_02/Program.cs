@@ -2,7 +2,7 @@
 
 namespace Ex01_02
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
@@ -29,6 +29,7 @@ namespace Ex01_02
 
             drawRecursiveHelper(numOfStartingSpaces, k_NumOfStartingStars, i_DiamondHeight);
         }
+
         private static void drawRecursiveHelper(int i_NumOfSpaces, int i_NumOfStars, int i_DiamondHeight)
         {
             if (i_NumOfStars == i_DiamondHeight)
