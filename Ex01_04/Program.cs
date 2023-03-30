@@ -7,11 +7,7 @@ namespace Ex01_04
     {
         public static void Main()
         {
-            StringBuilder s = new StringBuilder("abccba");
-            if (IsPalindrom(s))
-                Console.WriteLine("Pali");
-            else
-                Console.WriteLine("Not Pali");
+            
         }
 
         public static StringBuilder GetStringFromUser()
