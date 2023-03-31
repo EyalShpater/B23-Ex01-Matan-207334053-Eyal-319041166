@@ -6,7 +6,7 @@ namespace Ex01_05
     {
         public static void Main()
         {
-            Console.WriteLine(CountNumberOfDigitsGraterThanLeastSignificateDigit((15)));
+
         }
 
         public static bool GetUserInput(out int o_UserInput)
@@ -33,5 +33,39 @@ namespace Ex01_05
 
             return count;
         }
+
+        public static int MinDigitInNumber(int i_Number)
+        {
+            int minDigit = i_Number % 10;
+
+            while(Math.Abs(i_Number) > 0)
+            {
+                i_Number /= 10;
+                if(i_Number % 10 < minDigit)
+                {
+                    minDigit = i_Number % 10;
+                }
+            }
+
+            return minDigit;
+        }
+
+        public static int NumOfDigitsDividedByThree(int i_Number)
+        {
+            int count = 0;
+
+            while (Math.Abs(i_Number) > 0)
+            {
+                if((i_Number % 10) % 3 == 0)
+                {
+                    count++;
+                }
+
+                i_Number /= 10;
+            }
+
+            return count;
+        }
     }
 }
+
