@@ -10,7 +10,7 @@ namespace Ex01_05
             int number;
             bool isValidInput = GetUserInput(out number, k_NumOfDigitsExpected);
 
-            while (isValidInput)
+            while(!isValidInput)
             {
                 Console.WriteLine("Invalid input!");
                 isValidInput = GetUserInput(out number, k_NumOfDigitsExpected);
