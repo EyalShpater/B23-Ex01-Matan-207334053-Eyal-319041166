@@ -6,11 +6,16 @@ namespace Ex01_05
     {
         public static void Main()
         {
+            RunApp();
+        }
+
+        public static void RunApp()
+        {
             const int k_NumOfDigitsExpected = 6;
             int number;
             bool isValidInput = GetUserInput(out number, k_NumOfDigitsExpected);
 
-            while(!isValidInput)
+            while (!isValidInput)
             {
                 Console.WriteLine("Invalid input!");
                 isValidInput = GetUserInput(out number, k_NumOfDigitsExpected);
@@ -22,19 +27,15 @@ namespace Ex01_05
             int numOfDigitsDividedByThree = NumOfDigitsDividedByThree(number);
             float avgOfDigits = AverageOfDigits(number);
 
-            if(numOfDigitsInNumber != k_NumOfDigitsExpected)
+            if (numOfDigitsInNumber != k_NumOfDigitsExpected)
             {
+                int numOfZero = k_NumOfDigitsExpected - numOfDigitsInNumber;
+
                 minDig = 0;
-                numOfDigitsDividedByThree++;
+                numOfDigitsDividedByThree += numOfZero;
             }
 
-            string msg = string.Format(
-                    @"There are {0} digits grater the the least significate digit.
-The minimum digit is {1}.
-There are {2} digits divided by 3.
-The average of the digits is: {3}."
-                    , numOfDigitsGrater, minDig, numOfDigitsDividedByThree, avgOfDigits);
-            Console.WriteLine(msg);
+            Console.WriteLine(WriteInformationOfTheSrtring(numOfDigitsGrater, minDig, numOfDigitsDividedByThree, avgOfDigits));
         }
 
         public static bool GetUserInput(out int o_UserInput, int i_ValidNumberLength)
@@ -45,6 +46,18 @@ The average of the digits is: {3}."
             return int.TryParse(userInput, out o_UserInput) && (userInput.Length == i_ValidNumberLength);
         }
 
+        public static string WriteInformationOfTheSrtring(int i_NumOfDigitsGrater, int i_MinDig, int i_NumOfDigitsDividedByThree, float i_AvgOfDigits)
+        {
+            string msg = string.Format(
+@"There are {0} digits grater the than least significate digit.
+The minimum digit is {1}.
+There are {2} digits divided by 3.
+The average of the digits is: {3}.", 
+i_NumOfDigitsGrater, i_MinDig, i_NumOfDigitsDividedByThree, i_AvgOfDigits);
+
+            return msg;
+        }
+    
         public static int CountNumberOfDigitsGraterThanLeastSignificateDigit(int i_Number)
         {
             int count = 0;

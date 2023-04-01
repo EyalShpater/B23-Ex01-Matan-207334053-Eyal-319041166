@@ -7,32 +7,23 @@ namespace Ex01_04
     {
         public static void Main()
         {
+            RunApp();
+        }
+
+        public static void RunApp()
+        {
             StringBuilder userInput = GetInputFromUser();
             int userNumber;
 
             if (IsValidInput(userInput))
             {
-                if(IsPalindrom(userInput))
-                {
-                    Console.WriteLine("Palindrom!");
-                }
-                else
-                {
-                    Console.WriteLine("Not palindrom!");
-                }
+                PrintIfPlaindrom(IsPalindrom(userInput));
 
                 if (int.TryParse(userInput.ToString(), out userNumber))
                 {
-                    if (IsDividedByThree(userNumber))
-                    {
-                        Console.WriteLine("This number is divided by 3!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("This number is not divided by 3!");
-                    }
+                    PrintIfDividedByThree(IsDividedByThree(userNumber));
                 }
-                else 
+                else
                 {
                     int numOfUpperCase = CountNumOfUpperCaseLetters(userInput);
 
@@ -43,6 +34,16 @@ namespace Ex01_04
             {
                 Console.WriteLine("This input is not valid!");
             }
+        }
+
+        public static void PrintIfPlaindrom(bool i_IsPalindrom)
+        {
+            Console.WriteLine(i_IsPalindrom ? "Palindrom!" : "Not palindrom!");
+        }
+
+        public static void PrintIfDividedByThree(bool i_IsDividedByThree)
+        {
+            Console.WriteLine($"This number is{(!i_IsDividedByThree ? " not" : "")} divided by 3!");
         }
 
         public static StringBuilder GetInputFromUser()
@@ -94,7 +95,7 @@ namespace Ex01_04
             {
                 char c = i_Text[i];
 
-                if (Char.IsUpper(c))
+                if (char.IsUpper(c))
                 {
                     upperCaseCounter++;
                 }
@@ -121,11 +122,11 @@ namespace Ex01_04
                 {
                     char c = i_Input[i];
 
-                    if (Char.IsLetter(c))
+                    if (char.IsLetter(c))
                     {
                         includeLetter = true;
                     }
-                    else if (Char.IsDigit(c))
+                    else if (char.IsDigit(c))
                     {
                         includeDigit = true;
                     }

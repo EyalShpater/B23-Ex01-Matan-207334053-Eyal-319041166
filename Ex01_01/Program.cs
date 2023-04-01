@@ -5,7 +5,6 @@ namespace Ex01_01
     {
         public static void Main()
         {
-
             int[] numbers = new int[3];
             int totalZeros = 0, totalOnes = 0, divisibleBy4 = 0, descendingSeries = 0, totalPalindromes = 0;
 
