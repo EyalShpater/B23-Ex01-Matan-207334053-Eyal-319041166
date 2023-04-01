@@ -14,21 +14,26 @@ namespace Ex01_02
         public static void DrawDiamond(int i_DiamondHeight)
         {
             const int k_NumOfStartingStars = 1;
-            int numOfStartingSpaces = i_DiamondHeight / 2;
+            int numOfStartingSpaces;
+       
+            checkValidityOfInput(ref i_DiamondHeight);
+            numOfStartingSpaces = i_DiamondHeight / 2;
+            drawDiamondRecursiveHelper(numOfStartingSpaces, k_NumOfStartingStars, i_DiamondHeight);
+        }
 
-            if (i_DiamondHeight < 0)
+        private static void checkValidityOfInput(ref int io_DiamondHeight)
+        {
+            while(io_DiamondHeight < 0)
             {
                 Console.WriteLine("Invalid Diamond height!");
-
-                return;
+                Console.WriteLine("Please enter positive value: ");
+                io_DiamondHeight = int.Parse(Console.ReadLine());
             }
 
-            if (i_DiamondHeight % 2 == 0)
+            if(io_DiamondHeight % 2 == 0)
             {
-                i_DiamondHeight++;
+                io_DiamondHeight++;
             }
-
-            drawDiamondRecursiveHelper(numOfStartingSpaces, k_NumOfStartingStars, i_DiamondHeight);
         }
 
         private static void drawDiamondRecursiveHelper(int i_NumOfSpaces, int i_NumOfStars, int i_DiamondHeight)

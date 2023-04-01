@@ -13,8 +13,12 @@ namespace Ex01_03
 
         public static int GetNumOfDiamondLinesFromUser()
         {
+            int numOfDiamondLines;
+            string userInput;
+
             Console.WriteLine("Enter number of Diamond lines: ");
-            int numOfDiamondLines = int.Parse(Console.ReadLine());
+            userInput = Console.ReadLine();
+            numOfDiamondLines = int.Parse(userInput);
 
             return numOfDiamondLines;
         }

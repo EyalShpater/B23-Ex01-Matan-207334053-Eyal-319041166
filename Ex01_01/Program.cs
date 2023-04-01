@@ -19,8 +19,8 @@ namespace Ex01_01
                     i--;
                     continue;
                 }
-
-                numbers[i] = Convert.ToInt32(input, 2);
+                
+                numbers[i] = ConvertBinaryStringToInt(input);
 
                 totalZeros += CountZeros(input);
                 totalOnes += CountOnes(input);
@@ -53,6 +53,22 @@ namespace Ex01_01
             Console.WriteLine($"Number of inputs divisible by 4: {divisibleBy4}");
             Console.WriteLine($"Number of inputs with digits in descending series: {descendingSeries}");
             Console.WriteLine($"Number of inputs with palindrome digits: {totalPalindromes}");
+        }
+
+        public static int ConvertBinaryStringToInt(string binaryString)
+        {
+            int result = 0;
+            int power = 0;
+
+            for (int i = binaryString.Length - 1; i >= 0; i--)
+            {
+                int digit = binaryString[i] - '0';
+
+                result += digit * (int)Math.Pow(2, power);
+                power++;
+            }
+
+            return result;
         }
 
         public static bool IsValidBinary(string input)

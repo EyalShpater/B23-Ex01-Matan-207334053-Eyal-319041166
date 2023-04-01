@@ -17,16 +17,14 @@ namespace Ex01_04
 
             if (IsValidInput(userInput))
             {
-                PrintIfPlaindrom(IsPalindrom(userInput));
-
+                Console.WriteLine(IsPalindrom(userInput) ? "Palindrom!" : "Not palindrom!");
                 if (int.TryParse(userInput.ToString(), out userNumber))
                 {
-                    PrintIfDividedByThree(IsDividedByThree(userNumber));
+                    Console.WriteLine($"This number is{(!IsDividedByThree(userNumber) ? " not" : "")} divided by 3!"); 
                 }
                 else
                 {
                     int numOfUpperCase = CountNumOfUpperCaseLetters(userInput);
-
                     Console.WriteLine("Your input includes {0} upper case letters", numOfUpperCase);
                 }
             }
@@ -34,17 +32,7 @@ namespace Ex01_04
             {
                 Console.WriteLine("This input is not valid!");
             }
-        }
-
-        public static void PrintIfPlaindrom(bool i_IsPalindrom)
-        {
-            Console.WriteLine(i_IsPalindrom ? "Palindrom!" : "Not palindrom!");
-        }
-
-        public static void PrintIfDividedByThree(bool i_IsDividedByThree)
-        {
-            Console.WriteLine($"This number is{(!i_IsDividedByThree ? " not" : "")} divided by 3!");
-        }
+        }      
 
         public static StringBuilder GetInputFromUser()
         {
