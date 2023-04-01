@@ -10,7 +10,7 @@ namespace Ex01_01
 
             for (int i = 0; i < 3; i++)
             {
-                Console.Write($"Enter number #{i + 1} in binary format (8 digits): ");
+                Console.Write($"Enter number #{i + 1} in binary format of 8 digits: ");
                 string input = Console.ReadLine();
 
                 if (!IsValidBinary(input))
