@@ -14,33 +14,40 @@ namespace Ex01_01
             int firstNum, secondNum, thirdNum;
             int totalZeros = 0, totalOnes = 0, divisibleBy4 = 0, descendingSeries = 0, totalPalindromes = 0;
 
-            GetBinaryNumbersFromUser(out firstNum, out secondNum, out thirdNum, ref totalZeros, ref totalOnes, ref divisibleBy4, ref descendingSeries, ref totalPalindromes);
-            PrintStatistics(firstNum, secondNum, thirdNum, totalZeros, totalOnes, divisibleBy4, descendingSeries, totalPalindromes);
+            GetBinaryNumbersFromUser(out firstNum, out secondNum, out thirdNum, ref totalZeros, 
+                ref totalOnes, ref divisibleBy4, ref descendingSeries, ref totalPalindromes);
+            PrintStatistics(firstNum, secondNum, thirdNum, totalZeros, totalOnes, 
+                divisibleBy4, descendingSeries, totalPalindromes);
         }
 
-        public static void PrintStatistics(int i_FirstNum, int i_SecondNum, int i_ThirdNum, int i_TotalZeros, int i_TotalOnes, int i_DivisibleBy4, int i_DescendingSeries, int i_TotalPalindromes)
+        public static void PrintStatistics(int i_FirstNum, int i_SecondNum, int i_ThirdNum, int i_TotalZeros, 
+            int i_TotalOnes, int i_DivisibleBy4, int i_DescendingSeries, int i_TotalPalindromes)
         {
-            int totalInputs = 3;
-            int numOfBytesInInput = 8;
-            double avgZeros = (double)i_TotalZeros / (double)(totalInputs * numOfBytesInInput);
-            double avgOnes = (double)i_TotalOnes / (double)(totalInputs * numOfBytesInInput);
+            const int k_TotalInputs = 3;
+            float avgZeros = (float)i_TotalZeros / (float)(k_TotalInputs);
+            float avgOnes = (float)i_TotalOnes / (float)(k_TotalInputs);
 
             Console.WriteLine($"The numbers in decimal format are: {i_ThirdNum}, {i_SecondNum}, {i_FirstNum}");
-            Console.WriteLine($"Average number of zeros: {avgZeros:F2}");
-            Console.WriteLine($"Average number of ones: {avgOnes:F2}");
+            Console.WriteLine($"Average number of zeros: {avgZeros}");
+            Console.WriteLine($"Average number of ones: {avgOnes}");
             Console.WriteLine($"Number of inputs divisible by 4: {i_DivisibleBy4}");
             Console.WriteLine($"Number of inputs with digits in descending series: {i_DescendingSeries}");
             Console.WriteLine($"Number of inputs with palindrome digits: {i_TotalPalindromes}");
         }
 
-        static void GetBinaryNumbersFromUser(out int o_FirstNum, out int o_SecondNum, out int o_ThirdNum, ref int o_TotalZeros, ref int o_TotalOnes, ref int o_DivisibleBy4, ref int o_DescendingSeries, ref int o_TotalPalindromes)
+        public static void GetBinaryNumbersFromUser(out int o_FirstNum, out int o_SecondNum, out int o_ThirdNum, 
+            ref int o_TotalZeros, ref int o_TotalOnes, ref int o_DivisibleBy4, ref int o_DescendingSeries, ref int o_TotalPalindromes)
         {
-            getUserInputBinaryNumber(out o_FirstNum, ref o_TotalZeros, ref o_TotalOnes, ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
-            getUserInputBinaryNumber(out o_SecondNum, ref o_TotalZeros, ref o_TotalOnes, ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
-            getUserInputBinaryNumber(out o_ThirdNum, ref o_TotalZeros, ref o_TotalOnes, ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
+            getUserInputBinaryNumber(out o_FirstNum, ref o_TotalZeros, ref o_TotalOnes, 
+                ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
+            getUserInputBinaryNumber(out o_SecondNum, ref o_TotalZeros, ref o_TotalOnes, 
+                ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
+            getUserInputBinaryNumber(out o_ThirdNum, ref o_TotalZeros, ref o_TotalOnes, 
+                ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
         }
 
-        static void getUserInputBinaryNumber(out int o_DecimalNum, ref int o_TotalZeros, ref int o_TotalOnes, ref int o_DivisibleBy4, ref int o_DescendingSeries, ref int o_TotalPalindromes)
+        private static void getUserInputBinaryNumber(out int o_DecimalNum, ref int o_TotalZeros, ref int o_TotalOnes, 
+            ref int o_DivisibleBy4, ref int o_DescendingSeries, ref int o_TotalPalindromes)
         {
             Console.Write("Enter number in binary format (8 digits): ");
             string input = Console.ReadLine();
@@ -55,7 +62,7 @@ namespace Ex01_01
 
             if (o_DecimalNum % 4 == 0)
             {
-                o_DivisibleBy4++;
+                o_DivisibleBy4++; //io?
             }
 
             if (IsDescendingSeries(o_DecimalNum))
