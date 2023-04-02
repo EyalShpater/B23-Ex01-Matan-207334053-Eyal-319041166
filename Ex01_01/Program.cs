@@ -55,7 +55,7 @@ namespace Ex01_01
 
             Console.Write("Enter number in binary format (8 digits): ");
             input = Console.ReadLine();
-            while (!IsValidBinary(input))
+            while(!IsValidBinary(input))
             {
                 Console.WriteLine("Invalid input. Enter a valid binary number with 8 digits.");
                 input = Console.ReadLine();
@@ -64,17 +64,17 @@ namespace Ex01_01
             o_DecimalNum = ConvertBinaryStringToInt(input);
             o_TotalZeros += CountZeros(input);
             o_TotalOnes += countOnes(input);
-            if (o_DecimalNum % 4 == 0)
+            if(o_DecimalNum % 4 == 0)
             {
                 o_DivisibleBy4++;
             }
 
-            if (isDescendingSeries(o_DecimalNum))
+            if(isDescendingSeries(o_DecimalNum))
             {
                 o_DescendingSeries++;
             }
             
-            if (isPalindrome(o_DecimalNum))
+            if(isPalindrome(o_DecimalNum))
             {
                 o_TotalPalindromes++;
             }
@@ -85,7 +85,7 @@ namespace Ex01_01
             int result = 0;
             int power = 0;
 
-            for (int i = i_BinaryString.Length - 1; i >= 0; i--)
+            for(int i = i_BinaryString.Length - 1; i >= 0; i--)
             {
                 int digit = i_BinaryString[i] - '0';
 
@@ -101,9 +101,9 @@ namespace Ex01_01
             const int k_NumOfBits = 8;
             bool isValid = (i_Input != null && i_Input.Length == k_NumOfBits);
 
-            for (int i = 0; isValid && i < i_Input.Length; i++)
+            for(int i = 0; isValid && i < i_Input.Length; i++)
             {
-                if (i_Input[i] != '0' && i_Input[i] != '1')
+                if(i_Input[i] != '0' && i_Input[i] != '1')
                 {
                     isValid = false;
                 }
@@ -133,9 +133,9 @@ namespace Ex01_01
         {
             int count = 0;
 
-            for (int i = 0; i < i_Input.Length; i++)
+            for(int i = 0; i < i_Input.Length; i++)
             {
-                if (i_Input[i] == '1')
+                if(i_Input[i] == '1')
                 {
                     count++;
                 }
@@ -151,9 +151,9 @@ namespace Ex01_01
             bool isValid = true;
             string numStr = i_Series.ToString();
 
-            for (int i = 0; i < numStr.Length - 1; i++)
+            for(int i = 0; i < numStr.Length - 1; i++)
             {
-                if (numStr[i] <= numStr[i + 1])
+                if(numStr[i] <= numStr[i + 1])
                 {
                     isValid = false;
                 }
