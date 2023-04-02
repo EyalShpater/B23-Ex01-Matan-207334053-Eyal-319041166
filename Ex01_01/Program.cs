@@ -1,22 +1,24 @@
 ﻿using System;
+
 namespace Ex01_01
 {
     class Program
     {
-        static void Main()
+        public static void Main()
         {
             RunApp();
-            System.Console.WriteLine("Please press 'Enter' to exit...");
-            System.Console.ReadLine();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
+
         public static void RunApp()
         {
-            int firstNum, secondNum, thirdNum;
+            int firstNumber, secondNumber, thirdNumber;
             int totalZeros = 0, totalOnes = 0, divisibleBy4 = 0, descendingSeries = 0, totalPalindromes = 0;
 
-            GetBinaryNumbersFromUser(out firstNum, out secondNum, out thirdNum, ref totalZeros, 
-                ref totalOnes, ref divisibleBy4, ref descendingSeries, ref totalPalindromes);
-            PrintStatistics(firstNum, secondNum, thirdNum, totalZeros, totalOnes, 
+            GetBinaryNumbersFromUser(out firstNumber, out secondNumber, out thirdNumber, 
+                ref totalZeros, ref totalOnes, ref divisibleBy4, ref descendingSeries, ref totalPalindromes);
+            PrintStatistics(firstNumber, secondNumber, thirdNumber, totalZeros, totalOnes, 
                 divisibleBy4, descendingSeries, totalPalindromes);
         }
 
@@ -24,8 +26,8 @@ namespace Ex01_01
             int i_TotalOnes, int i_DivisibleBy4, int i_DescendingSeries, int i_TotalPalindromes)
         {
             const int k_TotalInputs = 3;
-            float avgZeros = (float)i_TotalZeros / (float)(k_TotalInputs);
-            float avgOnes = (float)i_TotalOnes / (float)(k_TotalInputs);
+            float avgZeros = (float)i_TotalZeros / (float)k_TotalInputs;
+            float avgOnes = (float)i_TotalOnes / (float)k_TotalInputs;
 
             Console.WriteLine($"The numbers in decimal format are: {i_ThirdNum}, {i_SecondNum}, {i_FirstNum}");
             Console.WriteLine($"Average number of zeros: {avgZeros}");
@@ -49,41 +51,43 @@ namespace Ex01_01
         private static void getUserInputBinaryNumber(out int o_DecimalNum, ref int o_TotalZeros, ref int o_TotalOnes, 
             ref int o_DivisibleBy4, ref int o_DescendingSeries, ref int o_TotalPalindromes)
         {
+            string input;
+
             Console.Write("Enter number in binary format (8 digits): ");
-            string input = Console.ReadLine();
+            input = Console.ReadLine();
             while (!IsValidBinary(input))
             {
                 Console.WriteLine("Invalid input. Enter a valid binary number with 8 digits.");
                 input = Console.ReadLine();
             }
+
             o_DecimalNum = ConvertBinaryStringToInt(input);
             o_TotalZeros += CountZeros(input);
-            o_TotalOnes += CountOnes(input);
-
+            o_TotalOnes += countOnes(input);
             if (o_DecimalNum % 4 == 0)
             {
-                o_DivisibleBy4++; //io?
+                o_DivisibleBy4++;
             }
 
-            if (IsDescendingSeries(o_DecimalNum))
+            if (isDescendingSeries(o_DecimalNum))
             {
                 o_DescendingSeries++;
             }
             
-            if (IsPalindrome(o_DecimalNum))
+            if (isPalindrome(o_DecimalNum))
             {
                 o_TotalPalindromes++;
             }
         }
 
-        public static int ConvertBinaryStringToInt(string binaryString)
+        public static int ConvertBinaryStringToInt(string i_BinaryString)
         {
             int result = 0;
             int power = 0;
 
-            for (int i = binaryString.Length - 1; i >= 0; i--)
+            for (int i = i_BinaryString.Length - 1; i >= 0; i--)
             {
-                int digit = binaryString[i] - '0';
+                int digit = i_BinaryString[i] - '0';
 
                 result += digit * (int)Math.Pow(2, power);
                 power++;
@@ -92,17 +96,14 @@ namespace Ex01_01
             return result;
         }
 
-        public static bool IsValidBinary(string input)
+        public static bool IsValidBinary(string i_Input)
         {
-            bool isValid = true;
-            if (input == null || input.Length != 8)
-            {
-                isValid = false;
-            }
+            const int k_NumOfBits = 8;
+            bool isValid = (i_Input != null && i_Input.Length == k_NumOfBits);
 
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; isValid && i < i_Input.Length; i++)
             {
-                if (input[i] != '0' && input[i] != '1')
+                if (i_Input[i] != '0' && i_Input[i] != '1')
                 {
                     isValid = false;
                 }
@@ -111,40 +112,45 @@ namespace Ex01_01
             return isValid;
         }
 
-        public static int CountZeros(string input)
+        public static int CountZeros(string i_Input)
         {
             int count = 0;
-            int i = 0;
-            while (i < input.Length)
+
+            for(int i = 0; i < i_Input.Length; i++)
             {
-                if (input[i] == '0')
+                if(i_Input[i] == '0')
                 {
                     count++;
                 }
+
                 i++;
             }
+
             return count;
         }
 
-        private static int CountOnes(string input)
+        private static int countOnes(string i_Input)
         {
             int count = 0;
-            int i = 0;
-            while (i < input.Length)
+
+            for (int i = 0; i < i_Input.Length; i++)
             {
-                if (input[i] == '1')
+                if (i_Input[i] == '1')
                 {
                     count++;
                 }
+
                 i++;
             }
+
             return count;
         }
 
-        private static bool IsDescendingSeries(int num)
+        private static bool isDescendingSeries(int i_Series)
         {
             bool isValid = true;
-            string numStr = num.ToString();
+            string numStr = i_Series.ToString();
+
             for (int i = 0; i < numStr.Length - 1; i++)
             {
                 if (numStr[i] <= numStr[i + 1])
@@ -152,23 +158,25 @@ namespace Ex01_01
                     isValid = false;
                 }
             }
+
             return isValid;
         }
 
-        private static bool IsPalindrome(int i_inputNum)
+        private static bool isPalindrome(int i_InputNum)
         {
             bool isPalindrom = true;
-            string inputString = i_inputNum.ToString();
-            for (int i = 0; i < inputString.Length / 2; i++)
+            string inputString = i_InputNum.ToString();
+
+            for(int i = 0; i < inputString.Length / 2; i++)
             {
-                if (inputString[i] != inputString[inputString.Length - 1 - i])
+                if(inputString[i] != inputString[inputString.Length - 1 - i])
                 {
                     isPalindrom = false;
                     break;
                 }
             }
+
             return isPalindrom;
         }
-
     }
 }
