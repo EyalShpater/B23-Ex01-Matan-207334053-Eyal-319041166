@@ -19,10 +19,31 @@ namespace Ex01_03
             string userInput;
 
             Console.WriteLine("Enter number of Diamond lines: ");
-            userInput = Console.ReadLine();
-            numOfDiamondLines = int.Parse(userInput);
+            userInput = Console.ReadLine();      
+            numOfDiamondLines = checkValidityOfInput(ref userInput);
 
             return numOfDiamondLines;
+        }
+
+        private static int checkValidityOfInput(ref string io_DiamondHeight)
+        {
+            int diamondHeight;
+            bool isValid = int.TryParse(io_DiamondHeight, out diamondHeight);
+
+            while (!isValid || diamondHeight < 0)
+            {
+                Console.WriteLine("Invalid Diamond height!");
+                Console.WriteLine("Please enter positive value: ");
+                io_DiamondHeight = Console.ReadLine();
+                isValid = int.TryParse(io_DiamondHeight, out diamondHeight);
+            }
+
+            if (diamondHeight % 2 == 0)
+            {
+                diamondHeight++;
+            }
+
+            return diamondHeight;
         }
     }
 }

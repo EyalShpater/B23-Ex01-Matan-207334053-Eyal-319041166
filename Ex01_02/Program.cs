@@ -18,7 +18,6 @@ namespace Ex01_02
             const int k_NumOfStartingStars = 1;
             int numOfStartingSpaces;
        
-            checkValidityOfInput(ref i_DiamondHeight);
             numOfStartingSpaces = i_DiamondHeight / 2;
             drawDiamondRecursiveHelper(numOfStartingSpaces, k_NumOfStartingStars, i_DiamondHeight);
         }
