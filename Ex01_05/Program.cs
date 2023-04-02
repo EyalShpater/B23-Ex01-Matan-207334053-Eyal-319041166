@@ -7,6 +7,8 @@ namespace Ex01_05
         public static void Main()
         {
             RunApp();
+            System.Console.WriteLine("Please press 'Enter' to exit...");
+            System.Console.ReadLine();
         }
 
         public static void RunApp()
