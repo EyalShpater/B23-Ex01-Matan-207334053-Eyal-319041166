@@ -5,44 +5,14 @@ namespace Ex01_01
     {
         public static void Main()
         {
-            int[] numbers = new int[3];
+            int firstNum, secondNum, thirdNum;
+
             int totalZeros = 0, totalOnes = 0, divisibleBy4 = 0, descendingSeries = 0, totalPalindromes = 0;
 
-            for (int i = 0; i < 3; i++)
-            {
-                Console.Write($"Enter number #{i + 1} in binary format of 8 digits: ");
-                string input = Console.ReadLine();
+            GetBinaryNumbersFromUser(out firstNum, out secondNum, out thirdNum,  ref totalZeros, ref totalOnes);
+            CalculateStatistics(firstNum,  secondNum,  thirdNum);
 
-                if (!IsValidBinary(input))
-                {
-                    Console.WriteLine("Invalid input. Enter a valid binary number with 8 digits.");
-                    i--;
-                    continue;
-                }
-
-                numbers[i] = Convert.ToInt32(input, 2);
-
-                totalZeros += CountZeros(input);
-                totalOnes += CountOnes(input);
-                if (numbers[i] % 4 == 0)
-                {
-                    divisibleBy4++;
-                }
-
-                if (IsDescendingSeries(numbers[i]))
-                {
-                    descendingSeries++;
-                }
-
-                if (IsPalindrome(numbers[i].ToString())) 
-                {
-                    totalPalindromes++;
-                }
-            }
-
-            Array.Sort(numbers);
-            Array.Reverse(numbers);
-            Console.WriteLine($"The numbers in decimal format, in descending order, are: {numbers[0]}, {numbers[1]}, {numbers[2]}");
+            Console.WriteLine($"The numbers in decimal format, in descending order, are: {firstNum}, {secondNum}, {thirdNum}");
             
             int totalInputs = 3;
             double avgZeros = (double)totalZeros / (double)(totalInputs * 8);
@@ -53,6 +23,60 @@ namespace Ex01_01
             Console.WriteLine($"Number of inputs divisible by 4: {divisibleBy4}");
             Console.WriteLine($"Number of inputs with digits in descending series: {descendingSeries}");
             Console.WriteLine($"Number of inputs with palindrome digits: {totalPalindromes}");
+        }
+
+        public static void GetBinaryNumbersFromUser(out int o_FirstNum, out int o_SecondNum, out int o_ThirdNum,  ref int o_TotalZeros, ref int o_TotalOnes)
+        {
+            getUserInputBinaryNumer(out o_FirstNum, ref o_TotalZeros, ref o_TotalOnes);
+            getUserInputBinaryNumer(out o_SecondNum, ref o_TotalZeros, ref o_TotalOnes);
+            getUserInputBinaryNumer(out o_ThirdNum, ref o_TotalZeros, ref o_TotalOnes);
+                
+            if (numbers[i] % 4 == 0)
+            {
+                  divisibleBy4++;
+            }
+
+            if (IsDescendingSeries(numbers[i]))
+            {
+                descendingSeries++;
+                        }
+                    if (IsPalindrome(numbers[i].ToString()))
+                    {
+                        totalPalindromes++;
+                    }
+
+            Array.Sort(numbers);
+            Array.Reverse(numbers);
+        }
+
+        public static void getUserInputBinaryNumer(out int o_BinaryNum, ref int o_TotalZeros, ref int o_TotalOnes)
+        {
+            Console.Write($"Enter number in binary format (8 digits): ");
+            string input = Console.ReadLine();
+            while(!IsValidBinary(input))
+            {
+                Console.WriteLine("Invalid input. Enter a valid binary number with 8 digits.");
+                input = Console.ReadLine();
+            }
+            o_BinaryNum = ConvertBinaryStringToInt(input);
+            o_TotalZeros+= CountZeros(input);
+            o_TotalOnes += CountOnes(input);
+        }
+
+        public static int ConvertBinaryStringToInt(string binaryString)
+        {
+            int result = 0;
+            int power = 0;
+
+            for (int i = binaryString.Length - 1; i >= 0; i--)
+            {
+                int digit = binaryString[i] - '0';
+
+                result += digit * (int)Math.Pow(2, power);
+                power++;
+            }
+
+            return result;
         }
 
         public static bool IsValidBinary(string input)

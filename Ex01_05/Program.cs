@@ -22,8 +22,8 @@ namespace Ex01_05
             }
 
             int numOfDigitsInNumber = numOfDigits(number);
-            int numOfDigitsGrater = CountNumberOfDigitsGraterThanLeastSignificateDigit(number);
-            int minDig = MinDigitInNumber(number);
+            int numOfDigitsGraterThanLeastSignifiateDigit = CountNumberOfDigitsGraterThanLeastSignificateDigit(number);
+            int minimumDigit = MinDigitInNumber(number);
             int numOfDigitsDividedByThree = NumOfDigitsDividedByThree(number);
             float avgOfDigits = AverageOfDigits(number);
 
@@ -31,11 +31,12 @@ namespace Ex01_05
             {
                 int numOfZero = k_NumOfDigitsExpected - numOfDigitsInNumber;
 
-                minDig = 0;
+                minimumDigit = 0;
                 numOfDigitsDividedByThree += numOfZero;
             }
 
-            Console.WriteLine(WriteInformationOfTheSrtring(numOfDigitsGrater, minDig, numOfDigitsDividedByThree, avgOfDigits));
+            PrintStatisticsOfSrtring(numOfDigitsGraterThanLeastSignifiateDigit, minimumDigit,
+                numOfDigitsDividedByThree, avgOfDigits);
         }
 
         public static bool GetUserInput(out int o_UserInput, int i_ValidNumberLength)
@@ -46,18 +47,15 @@ namespace Ex01_05
             return int.TryParse(userInput, out o_UserInput) && (userInput.Length == i_ValidNumberLength);
         }
 
-        public static string WriteInformationOfTheSrtring(int i_NumOfDigitsGrater, int i_MinDig, int i_NumOfDigitsDividedByThree, float i_AvgOfDigits)
+        public static void PrintStatisticsOfSrtring(int i_NumOfDigitsGrater,
+            int i_MinDig, int i_NumOfDigitsDividedByThree, float i_AvgOfDigits)
         {
-            string msg = string.Format(
-@"There are {0} digits grater the than least significate digit.
-The minimum digit is {1}.
-There are {2} digits divided by 3.
-The average of the digits is: {3}.", 
-i_NumOfDigitsGrater, i_MinDig, i_NumOfDigitsDividedByThree, i_AvgOfDigits);
-
-            return msg;
+            Console.WriteLine($"There are {i_NumOfDigitsGrater} digits grater the than least significate digit.");
+            Console.WriteLine($"The minimum digit is {i_MinDig}.");
+            Console.WriteLine($"There are {i_NumOfDigitsDividedByThree} digits divided by 3.");
+            Console.WriteLine($"The average of the digits is: {i_AvgOfDigits}.");
         }
-    
+
         public static int CountNumberOfDigitsGraterThanLeastSignificateDigit(int i_Number)
         {
             int count = 0;
