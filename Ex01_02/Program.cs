@@ -23,7 +23,7 @@ namespace Ex01_02
 
         private static void drawDiamondRecursiveHelper(int i_NumOfSpaces, int i_NumOfStars, int i_DiamondHeight)
         {
-            if (i_NumOfStars == i_DiamondHeight)
+            if(i_NumOfStars == i_DiamondHeight)
             {
                 printLineOfStars(i_NumOfSpaces, i_NumOfStars);
             }
@@ -37,12 +37,12 @@ namespace Ex01_02
 
         private static void printLineOfStars(int i_NumOfSpaces, int i_NumOfStars)
         {
-            for (int i = 0; i < i_NumOfSpaces; i++)
+            for(int i = 0; i < i_NumOfSpaces; i++)
             {
                 Console.Write(" ");
             }
 
-            for (int i = 0; i < i_NumOfStars; i++)
+            for(int i = 0; i < i_NumOfStars; i++)
             {
                 Console.Write("*");
             }
