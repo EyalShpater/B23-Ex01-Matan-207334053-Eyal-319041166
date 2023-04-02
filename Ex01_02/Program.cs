@@ -16,9 +16,8 @@ namespace Ex01_02
         public static void DrawDiamond(int i_DiamondHeight)
         {
             const int k_NumOfStartingStars = 1;
-            int numOfStartingSpaces;
-       
-            numOfStartingSpaces = i_DiamondHeight / 2;
+            int numOfStartingSpaces = i_DiamondHeight / 2;
+    
             drawDiamondRecursiveHelper(numOfStartingSpaces, k_NumOfStartingStars, i_DiamondHeight);
         }
 

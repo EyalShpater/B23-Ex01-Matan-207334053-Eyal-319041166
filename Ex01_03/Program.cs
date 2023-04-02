@@ -33,7 +33,7 @@ namespace Ex01_03
             while (!isValid || diamondHeight < 0)
             {
                 Console.WriteLine("Invalid Diamond height!");
-                Console.WriteLine("Please enter a positive value: ");
+                Console.WriteLine("Please enter a positive integer value: ");
                 i_StringDiamondHeight = Console.ReadLine();
                 isValid = int.TryParse(i_StringDiamondHeight, out diamondHeight);
             }
