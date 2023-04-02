@@ -8,7 +8,9 @@ namespace Ex01_02
         {
             const int k_NumOfRowsToPrint = 9;
 
-            DrawDiamond(k_NumOfRowsToPrint); 
+            DrawDiamond(k_NumOfRowsToPrint);
+            System.Console.WriteLine("Please press 'Enter' to exit...");
+            System.Console.ReadLine();
         }
 
         public static void DrawDiamond(int i_DiamondHeight)
@@ -16,24 +18,8 @@ namespace Ex01_02
             const int k_NumOfStartingStars = 1;
             int numOfStartingSpaces;
        
-            checkValidityOfInput(ref i_DiamondHeight);
             numOfStartingSpaces = i_DiamondHeight / 2;
             drawDiamondRecursiveHelper(numOfStartingSpaces, k_NumOfStartingStars, i_DiamondHeight);
-        }
-
-        private static void checkValidityOfInput(ref int io_DiamondHeight)
-        {
-            while(io_DiamondHeight < 0)
-            {
-                Console.WriteLine("Invalid Diamond height!");
-                Console.WriteLine("Please enter positive value: ");
-                io_DiamondHeight = int.Parse(Console.ReadLine());
-            }
-
-            if(io_DiamondHeight % 2 == 0)
-            {
-                io_DiamondHeight++;
-            }
         }
 
         private static void drawDiamondRecursiveHelper(int i_NumOfSpaces, int i_NumOfStars, int i_DiamondHeight)
