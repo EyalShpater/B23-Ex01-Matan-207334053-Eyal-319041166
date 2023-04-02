@@ -3,64 +3,70 @@ namespace Ex01_01
 {
     class Program
     {
-        public static void Main()
+        static void Main()
+        {
+            RunApp();
+            System.Console.WriteLine("Please press 'Enter' to exit...");
+            System.Console.ReadLine();
+        }
+        public static void RunApp()
         {
             int firstNum, secondNum, thirdNum;
-
             int totalZeros = 0, totalOnes = 0, divisibleBy4 = 0, descendingSeries = 0, totalPalindromes = 0;
 
-            GetBinaryNumbersFromUser(out firstNum, out secondNum, out thirdNum,  ref totalZeros, ref totalOnes);
-            CalculateStatistics(firstNum,  secondNum,  thirdNum);
+            GetBinaryNumbersFromUser(out firstNum, out secondNum, out thirdNum, ref totalZeros, ref totalOnes, ref divisibleBy4, ref descendingSeries, ref totalPalindromes);
+            PrintStatistics(firstNum, secondNum, thirdNum, totalZeros, totalOnes, divisibleBy4, descendingSeries, totalPalindromes);
+        }
 
-            Console.WriteLine($"The numbers in decimal format, in descending order, are: {firstNum}, {secondNum}, {thirdNum}");
-            
+        public static void PrintStatistics(int i_FirstNum, int i_SecondNum, int i_ThirdNum, int i_TotalZeros, int i_TotalOnes, int i_DivisibleBy4, int i_DescendingSeries, int i_TotalPalindromes)
+        {
             int totalInputs = 3;
-            double avgZeros = (double)totalZeros / (double)(totalInputs * 8);
-            double avgOnes = (double)totalOnes / (double)(totalInputs * 8);
-            
+            int numOfBytesInInput = 8;
+            double avgZeros = (double)i_TotalZeros / (double)(totalInputs * numOfBytesInInput);
+            double avgOnes = (double)i_TotalOnes / (double)(totalInputs * numOfBytesInInput);
+
+            Console.WriteLine($"The numbers in decimal format are: {i_ThirdNum}, {i_SecondNum}, {i_FirstNum}");
             Console.WriteLine($"Average number of zeros: {avgZeros:F2}");
             Console.WriteLine($"Average number of ones: {avgOnes:F2}");
-            Console.WriteLine($"Number of inputs divisible by 4: {divisibleBy4}");
-            Console.WriteLine($"Number of inputs with digits in descending series: {descendingSeries}");
-            Console.WriteLine($"Number of inputs with palindrome digits: {totalPalindromes}");
+            Console.WriteLine($"Number of inputs divisible by 4: {i_DivisibleBy4}");
+            Console.WriteLine($"Number of inputs with digits in descending series: {i_DescendingSeries}");
+            Console.WriteLine($"Number of inputs with palindrome digits: {i_TotalPalindromes}");
         }
 
-        public static void GetBinaryNumbersFromUser(out int o_FirstNum, out int o_SecondNum, out int o_ThirdNum,  ref int o_TotalZeros, ref int o_TotalOnes)
+        static void GetBinaryNumbersFromUser(out int o_FirstNum, out int o_SecondNum, out int o_ThirdNum, ref int o_TotalZeros, ref int o_TotalOnes, ref int o_DivisibleBy4, ref int o_DescendingSeries, ref int o_TotalPalindromes)
         {
-            getUserInputBinaryNumer(out o_FirstNum, ref o_TotalZeros, ref o_TotalOnes);
-            getUserInputBinaryNumer(out o_SecondNum, ref o_TotalZeros, ref o_TotalOnes);
-            getUserInputBinaryNumer(out o_ThirdNum, ref o_TotalZeros, ref o_TotalOnes);
-                
-            if (numbers[i] % 4 == 0)
-            {
-                  divisibleBy4++;
-            }
-
-            if (IsDescendingSeries(numbers[i]))
-            {
-                descendingSeries++;
-                        }
-                    if (IsPalindrome(numbers[i].ToString()))
-                    {
-                        totalPalindromes++;
-                    }
-
-            Array.Sort(numbers);
-            Array.Reverse(numbers);
+            getUserInputBinaryNumber(out o_FirstNum, ref o_TotalZeros, ref o_TotalOnes, ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
+            getUserInputBinaryNumber(out o_SecondNum, ref o_TotalZeros, ref o_TotalOnes, ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
+            getUserInputBinaryNumber(out o_ThirdNum, ref o_TotalZeros, ref o_TotalOnes, ref o_DivisibleBy4, ref o_DescendingSeries, ref o_TotalPalindromes);
         }
 
-        public static void getUserInputBinaryNumer(out int o_BinaryNum, ref int o_TotalZeros, ref int o_TotalOnes)
+        static void getUserInputBinaryNumber(out int o_DecimalNum, ref int o_TotalZeros, ref int o_TotalOnes, ref int o_DivisibleBy4, ref int o_DescendingSeries, ref int o_TotalPalindromes)
         {
-            Console.Write($"Enter number in binary format (8 digits): ");
+            Console.Write("Enter number in binary format (8 digits): ");
             string input = Console.ReadLine();
-            while(!IsValidBinary(input))
+            while (!IsValidBinary(input))
             {
                 Console.WriteLine("Invalid input. Enter a valid binary number with 8 digits.");
                 input = Console.ReadLine();
             }
-            o_BinaryNum = ConvertBinaryStringToInt(input);
-            o_TotalZeros+= CountZeros(input);
+            o_DecimalNum = ConvertBinaryStringToInt(input);
+            o_TotalZeros += CountZeros(input);
             o_TotalOnes += CountOnes(input);
+
+            if (o_DecimalNum % 4 == 0)
+            {
+                o_DivisibleBy4++;
+            }
+
+            if (IsDescendingSeries(o_DecimalNum))
+            {
+                o_DescendingSeries++;
+            }
+            
+            if (IsPalindrome(o_DecimalNum))
+            {
+                o_TotalPalindromes++;
+            }
         }
 
         public static int ConvertBinaryStringToInt(string binaryString)
@@ -81,20 +87,34 @@ namespace Ex01_01
 
         public static bool IsValidBinary(string input)
         {
-            if (input.Length != 8) return false;
-            foreach (char c in input)
+            bool isValid = true;
+            if (input == null || input.Length != 8)
             {
-                if (c != '0' && c != '1') return false;
+                isValid = false;
             }
-            return true;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] != '0' && input[i] != '1')
+                {
+                    isValid = false;
+                }
+            }
+
+            return isValid;
         }
 
         public static int CountZeros(string input)
         {
             int count = 0;
-            foreach (char c in input)
+            int i = 0;
+            while (i < input.Length)
             {
-                if (c == '0') count++;
+                if (input[i] == '0')
+                {
+                    count++;
+                }
+                i++;
             }
             return count;
         }
@@ -102,33 +122,45 @@ namespace Ex01_01
         private static int CountOnes(string input)
         {
             int count = 0;
-            foreach (char c in input)
+            int i = 0;
+            while (i < input.Length)
             {
-                if (c == '1') count++;
+                if (input[i] == '1')
+                {
+                    count++;
+                }
+                i++;
             }
             return count;
         }
 
         private static bool IsDescendingSeries(int num)
         {
+            bool isValid = true;
             string numStr = num.ToString();
             for (int i = 0; i < numStr.Length - 1; i++)
             {
                 if (numStr[i] <= numStr[i + 1])
                 {
-                    return false;
+                    isValid = false;
                 }
             }
-            return true;
+            return isValid;
         }
 
-        private static bool IsPalindrome(string input)
+        private static bool IsPalindrome(int i_inputNum)
         {
-            for (int i = 0; i < input.Length / 2; i++)
+            bool isPalindrom = true;
+            string inputString = i_inputNum.ToString();
+            for (int i = 0; i < inputString.Length / 2; i++)
             {
-                if (input[i] != input[input.Length - 1 - i]) return false;
+                if (inputString[i] != inputString[inputString.Length - 1 - i])
+                {
+                    isPalindrom = false;
+                    break;
+                }
             }
-            return true;
+            return isPalindrom;
         }
 
     }
