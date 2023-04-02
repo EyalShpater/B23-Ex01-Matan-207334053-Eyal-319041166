@@ -9,8 +9,8 @@ namespace Ex01_03
             int numberOfDiamondLines = GetNumOfDiamondLinesFromUser();
 
             Ex01_02.Program.DrawDiamond(numberOfDiamondLines);
-            System.Console.WriteLine("Please press 'Enter' to exit...");
-            System.Console.ReadLine();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
 
         public static int GetNumOfDiamondLinesFromUser()
