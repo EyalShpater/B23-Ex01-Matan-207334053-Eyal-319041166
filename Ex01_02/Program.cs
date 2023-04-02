@@ -9,8 +9,8 @@ namespace Ex01_02
             const int k_NumOfRowsToPrint = 9;
 
             DrawDiamond(k_NumOfRowsToPrint);
-            System.Console.WriteLine("Please press 'Enter' to exit...");
-            System.Console.ReadLine();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
 
         public static void DrawDiamond(int i_DiamondHeight)
