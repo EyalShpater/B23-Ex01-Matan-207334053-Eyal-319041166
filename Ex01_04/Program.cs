@@ -100,7 +100,7 @@ namespace Ex01_04
             bool isLengthValid = (inputLength == 6);
             bool includeLetter = false;
             bool includeDigit = false;
-            bool includeUndifinedChar = false;
+            bool includeUndfinedChar = false;
 
             if (inputLength != 6)
             {
@@ -122,12 +122,12 @@ namespace Ex01_04
                     }
                     else
                     {
-                        includeUndifinedChar = true;
+                        includeUndfinedChar = true;
                     }
                 }
             }
 
-            return (includeLetter != includeDigit) && !includeUndifinedChar && isLengthValid;
+            return (includeLetter != includeDigit) && !includeUndfinedChar && isLengthValid;
         }
     }
 }
