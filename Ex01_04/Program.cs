@@ -17,10 +17,10 @@ namespace Ex01_04
             StringBuilder userInput = GetInputFromUser();
             int userNumber;
 
-            if (IsValidInput(userInput))
+            if(IsValidInput(userInput))
             {
                 Console.WriteLine(IsPalindrom(userInput) ? "Palindrom!" : "Not palindrom!");
-                if (int.TryParse(userInput.ToString(), out userNumber))
+                if(int.TryParse(userInput.ToString(), out userNumber))
                 {
                     Console.WriteLine($"This number is{(!IsDividedByThree(userNumber) ? " not" : "")} divided by 3!"); 
                 }
@@ -50,7 +50,7 @@ namespace Ex01_04
 
         public static bool IsPalindrom(StringBuilder i_Text)
         {
-            if (i_Text.Length <= 1)
+            if(i_Text.Length <= 1)
             {
                 return true;
             }
@@ -81,11 +81,11 @@ namespace Ex01_04
             int upperCaseCounter = 0;
             int length = i_Text.Length;
 
-            for (int i = 0; i < length; i++)
+            for(int i = 0; i < length; i++)
             {
                 char c = i_Text[i];
 
-                if (char.IsUpper(c))
+                if(char.IsUpper(c))
                 {
                     upperCaseCounter++;
                 }
@@ -102,21 +102,21 @@ namespace Ex01_04
             bool includeDigit = false;
             bool includeUndfinedChar = false;
 
-            if (inputLength != 6)
+            if(inputLength != 6)
             {
                 Console.WriteLine("Input must be 6 characters!");
             }
             else
             {
-                for (int i = 0; i < inputLength; i++)
+                for(int i = 0; i < inputLength; i++)
                 {
                     char c = i_Input[i];
 
-                    if (char.IsLetter(c))
+                    if(char.IsLetter(c))
                     {
                         includeLetter = true;
                     }
-                    else if (char.IsDigit(c))
+                    else if(char.IsDigit(c))
                     {
                         includeDigit = true;
                     }
