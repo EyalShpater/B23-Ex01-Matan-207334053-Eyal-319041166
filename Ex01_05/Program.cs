@@ -17,7 +17,7 @@ namespace Ex01_05
             int number;
             bool isValidInput = GetUserInput(out number, k_NumOfDigitsExpected);
 
-            while (!isValidInput)
+            while(!isValidInput)
             {
                 Console.WriteLine("Invalid input!");
                 isValidInput = GetUserInput(out number, k_NumOfDigitsExpected);
@@ -29,7 +29,7 @@ namespace Ex01_05
             int numOfDigitsDividedByThree = NumOfDigitsDividedByThree(number);
             float avgOfDigits = AverageOfDigits(number);
 
-            if (numOfDigitsInNumber != k_NumOfDigitsExpected)
+            if(numOfDigitsInNumber != k_NumOfDigitsExpected)
             {
                 int numOfZero = k_NumOfDigitsExpected - numOfDigitsInNumber;
 
@@ -37,7 +37,7 @@ namespace Ex01_05
                 numOfDigitsDividedByThree += numOfZero;
             }
 
-            PrintStatisticsOfSrtring(numOfDigitsGraterThanLeastSignifiateDigit, minimumDigit,
+            PrintStatisticsOfString(numOfDigitsGraterThanLeastSignifiateDigit, minimumDigit,
                 numOfDigitsDividedByThree, avgOfDigits);
         }
 
@@ -49,7 +49,7 @@ namespace Ex01_05
             return int.TryParse(userInput, out o_UserInput) && (userInput.Length == i_ValidNumberLength);
         }
 
-        public static void PrintStatisticsOfSrtring(int i_NumOfDigitsGrater,
+        public static void PrintStatisticsOfString(int i_NumOfDigitsGrater,
             int i_MinDig, int i_NumOfDigitsDividedByThree, float i_AvgOfDigits)
         {
             Console.WriteLine($"There are {i_NumOfDigitsGrater} digits grater the than least significate digit.");
@@ -64,7 +64,7 @@ namespace Ex01_05
             int leastSignificantDigit = i_Number % 10;
 
             i_Number = Math.Abs(i_Number);
-            while (i_Number > 0)
+            while(i_Number > 0)
             {
                 i_Number /= 10;
                 if(i_Number % 10 > leastSignificantDigit)
@@ -81,10 +81,10 @@ namespace Ex01_05
             int minDigit = i_Number % 10;
 
             i_Number = Math.Abs(i_Number);
-            while (i_Number >= 10)
+            while(i_Number >= 10)
             {
                 i_Number /= 10;
-                if (i_Number % 10 < minDigit)
+                if(i_Number % 10 < minDigit)
                 {
                     minDigit = i_Number % 10;
                 }
@@ -98,7 +98,7 @@ namespace Ex01_05
             int count = 0;
 
             i_Number = Math.Abs(i_Number);
-            while (i_Number > 0)
+            while(i_Number > 0)
             {
                 if((i_Number % 10) % 3 == 0)
                 {
@@ -117,7 +117,7 @@ namespace Ex01_05
             float avg = 0;
 
             i_Number = Math.Abs(i_Number);
-            while (i_Number > 0)
+            while(i_Number > 0)
             {
                 avg += i_Number % 10;
                 i_Number /= 10;
@@ -131,7 +131,7 @@ namespace Ex01_05
             int count = 0;
 
             i_Number = Math.Abs(i_Number);
-            while (i_Number > 0)
+            while(i_Number > 0)
             {
                 count++;
                 i_Number /= 10;
@@ -141,4 +141,3 @@ namespace Ex01_05
         }
     }
 }
-
